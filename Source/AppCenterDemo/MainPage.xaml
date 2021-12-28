@@ -1,24 +1,25 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="AppCenterDemo.MainPage">
+             x:Class="AppCenterDemo.MainPage"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="true"
+             x:Name="page">
 
     <StackLayout>
-        <Frame BackgroundColor="#2196F3" Padding="24" CornerRadius="0">
-            <Label Text="Welcome to Xamarin.Forms!" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
-        </Frame>
-        <Label Text="Start developing now" FontSize="Title" Padding="30,10,30,10"/>
-        <Label Text="Make changes to your XAML file and save to see your UI update in the running app with XAML Hot Reload. Give it a try!" FontSize="16" Padding="30,0,30,0"/>
-        <Label FontSize="16" Padding="30,24,30,0">
-            <Label.FormattedText>
-                <FormattedString>
-                    <FormattedString.Spans>
-                        <Span Text="Learn more at "/>
-                        <Span Text="https://aka.ms/xamarin-quickstart" FontAttributes="Bold"/>
-                    </FormattedString.Spans>
-                </FormattedString>
-            </Label.FormattedText>
-        </Label>
+        <Label Text="AppCenter Demo" FontSize="Title" Padding="30" HorizontalOptions="Center"/>
+        <Grid ColumnDefinitions="*, Auto" Padding="20">
+            <Label Text="Send Diagnostic" Grid.Column="0" FontSize="20" VerticalOptions="Center"/>
+            <Switch IsToggled="{Binding Source={x:Reference page}, Path=SendDiagnostic}" Grid.Column="1" VerticalOptions="Center"/>
+        </Grid>
+        <Grid ColumnDefinitions="*, Auto, *">
+            <StackLayout Orientation="Vertical" Grid.Column="1" Spacing="15">
+                <Button Text="Write Log" BorderWidth="1" Padding="20, 10" TextColor="Blue" BorderColor="Blue" Clicked="Write_Log_Button_Clicked"/>
+                <Button Text="Crash it" BorderWidth="1" Padding="20, 10" TextColor="Blue" BorderColor="Blue" Clicked="Crash_It_Button_Clicked"/>
+                <Button Text="Check Status" BorderWidth="1" Padding="20, 10" TextColor="Blue" BorderColor="Blue" Clicked="Check_Status_Button_Clicked"/>
+            </StackLayout>
+        </Grid>
+        <Label x:Name="AppCenterStatus" Padding="20" />
     </StackLayout>
 
 </ContentPage>
